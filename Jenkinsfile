@@ -1,29 +1,29 @@
 pipeline {
     agent any
 
-    stages {
+    environment {
+        APP_NAME = "payment-service"
+        ENV_NAME = "DEV"
+    }
 
-        stage('Checkout') {
-            steps {
-                echo 'Getting Code'
-            }
-        }
+    stages {
 
         stage('Build') {
             steps {
-                echo 'Building Application'
+                echo "Application: ${APP_NAME}"
+                echo "Environment: ${ENV_NAME}"
             }
         }
 
         stage('Test') {
             steps {
-                sh 'exit 1'
-    }
-}
+                echo "Testing ${APP_NAME}"
+            }
+        }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying Application'
+                echo "Deploying ${APP_NAME} to ${ENV_NAME}"
             }
         }
     }
